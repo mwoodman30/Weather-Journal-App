@@ -1,5 +1,5 @@
 const button = document.querySelector("#generate")
-/*const inputValue = document.querySelector(".inputValue")
+const inputValue = document.querySelector(".inputValue")
 
 const name = document.querySelector("#name");
 const desc = document.querySelector("#content");
@@ -37,7 +37,7 @@ button.addEventListener('click',function () {
        
       date.innerHTML = dateValue;
     })  
-})*/
+})
 
 // FEELING FUNCTION
 button.addEventListener('click',function(){
@@ -46,7 +46,7 @@ button.addEventListener('click',function(){
     feeling.innerHTML = feeling;
   
 })
-/*
+
 // POST function to server
 async function postData(url, data) {
     await fetch(url, {
@@ -68,4 +68,4 @@ async function getServerData() {
 
 function updateUI(weather) {
     console.log(weather);
-}*/
+}
