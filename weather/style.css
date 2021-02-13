@@ -50,10 +50,6 @@ p {
     color: black;
     border: black;
 }
-
-#feeling {
-    color: black;
-}
 #name {
     margin-top: 25px;
 }
@@ -76,4 +72,10 @@ textarea {
     margin-top: 45px;
     text-align: center;
     font-size: 36px;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+    border: black;
 }
