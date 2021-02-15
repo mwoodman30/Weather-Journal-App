@@ -25,10 +25,9 @@ function listening() {
     console.log(server);
     console.log(`running on localhost: ${port}`);
 }
-//
 
 // GET route
-app.get('/return', getData);
+app.get('/retrieve', getData);
 
 function getData(request, response) {
     response.send(projectData);
@@ -40,5 +39,6 @@ app.post('/add', postData);
 function postData(request, response) {
     projectData = request.body;
     response.send({ message: 'Post received' });
-    console.log(projectData);
+    console.log(request);
 }
+
