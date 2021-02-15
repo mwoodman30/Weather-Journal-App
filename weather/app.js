@@ -48,24 +48,24 @@ button.addEventListener('click',function(){
 })
 
 // POST function to server
-async function postData(url, data) {
-    await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
+const postData = async ( url = '', data = {})=>{
+    console.log(data)
+      const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data), // body data type must match "Content-Type" header        
     });
-}
-
-//GET FUNCITON
-async function getServerData() {
-    const response = await fetch('/return');
-    const currentEntry = await response.json();
-    if (currentEntry  && currentEntry.temp) {
-        updateUI(currentEntry);
-    }
-}
-
-function updateUI(weather) {
-    console.log(weather);
-}
+  
+      try {
+        const newData = await response.json();
+        // console.log(newData);
+        return newData
+      }catch(error) {
+      console.log("error", error);
+      // appropriately handle the error
+      }
+  }
+ 
