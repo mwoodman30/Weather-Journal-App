@@ -6,14 +6,28 @@ const desc = document.querySelector("#content");
 const temp = document.querySelector("#temp");
 const date = document.querySelector('#date');
 const Kelvin = 273;
-//let d = new Date();
-//let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
 button.addEventListener('click',function () {
   Promise.all([
     fetch('http://worldclockapi.com/api/json/est/now'),
     fetch('https://api.openweathermap.org/data/2.5/weather?zip=' +inputValue.value + '&appid=3e0ab282071ecddd139e033e5fb77b61')])
-      .then(response => response.json())
-      .then(data => {
+    .then(function (responses) {
+  // Get a JSON object from each of the responses
+        return Promise.all(responses.map(function (response) {
+          return response.json();
+      }))})
+      
+// I KNOW THAT THIS NEEDS TO BE DELETED, 
+          //I DO NOT KNOW WHAT CODE REPLACES IT
+
+      .then(data => 
+          console.log(data)
+          // I KNOW THAT THIS NEEDS TO BE DELETED, 
+          //I DO NOT KNOW WHAT CODE REPLACES IT
+
+           // Add custom code here
+        .then(response => response.json())
+        .then(data => {
           const nameValue = data['name'];
           const tempValue = Math.floor(data.main.temp - Kelvin);
           const descValue = data['weather'][0]['description'];
@@ -30,11 +44,12 @@ button.addEventListener('click',function () {
                 desc.innerHTML = data.desc;
                 date.innerHTML = data.date;
             })
-          });
-          
-      })
+          })
+
+      }))
+    })
       .catch(err => alert("wrong zip code"))
-})
+    
 
 
 // POST function to server
@@ -58,4 +73,3 @@ const postData = async ( url = '', data = {})=>{
       // appropriately handle the error
       }
   }
- 
