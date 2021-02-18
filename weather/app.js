@@ -16,42 +16,26 @@ button.addEventListener('click',function () {
         return Promise.all(responses.map(function (response) {
           return response.json();
       }))})
-      
-// I KNOW THAT THIS NEEDS TO BE DELETED, 
-          //I DO NOT KNOW WHAT CODE REPLACES IT
-
-      .then(data => 
-          console.log(data)
-          // I KNOW THAT THIS NEEDS TO BE DELETED, 
-          //I DO NOT KNOW WHAT CODE REPLACES IT
-
-           // Add custom code here
-        .then(response => response.json())
-        .then(data => {
-          const nameValue = data['name'];
-          const tempValue = Math.floor(data.main.temp - Kelvin);
-          const descValue = data['weather'][0]['description'];
-          const feeling = document.querySelector('#feeling').value;
-          const dateValue = data['currentDateTime'];
-
-          postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling, date: dateValue} )
-          .then(() => {
-            fetch("/retrieve")
-            .then(data => data.json())
-            .then(data => {
-                name.innerHTML = data.name;
-                temp.innerHTML = data.temp;
-                desc.innerHTML = data.desc;
-                date.innerHTML = data.date;
-            })
+      .then(data => {
+        const nameValue = data[1]['name'];
+        const tempValue = Math.floor(data[1].main.temp - Kelvin);
+        const descValue = data[1]['weather'][0]['description'];
+        const feeling = document.querySelector('#feeling').value;
+        const dateValue = data[0]['currentDateTime'];
+        postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling, date: dateValue} )
+        .then(() => {
+          fetch("/retrieve")
+          .then(data => data.json())
+          .then(data => {
+              name.innerHTML = data.name;
+              temp.innerHTML = data.temp;
+              desc.innerHTML = data.desc;
+              date.innerHTML = data.date;
           })
-
-      }))
+        })
     })
-      .catch(err => alert("wrong zip code"))
-    
-
-
+    .catch(err => alert("wrong zip code"))
+})
 // POST function to server
 const postData = async ( url = '', data = {})=>{
     
@@ -72,4 +56,5 @@ const postData = async ( url = '', data = {})=>{
       console.log("error", error);
       // appropriately handle the error
       }
-  }
+    }
+   
