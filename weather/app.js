@@ -1,5 +1,8 @@
 const button = document.querySelector("#generate")
-const inputValue = document.querySelector(".inputValue")
+const inputValue = document.querySelector("#zip")
+
+const api = 'https://api.openweathermap.org/data/2.5/weather?zip=' +inputValue.value + '&appid=3e0ab282071ecddd139e033e5fb77b61';
+const dateApi = 'http://worldclockapi.com/api/json/est/now';
 
 const name = document.querySelector("#name");
 const desc = document.querySelector("#content");
@@ -9,8 +12,9 @@ const Kelvin = 273;
 
 button.addEventListener('click',function () {
   Promise.all([
-    fetch('http://worldclockapi.com/api/json/est/now'),
-    fetch('https://api.openweathermap.org/data/2.5/weather?zip=' +inputValue.value + '&appid=3e0ab282071ecddd139e033e5fb77b61')])
+    fetch(dateApi),
+    fetch(api)
+  ])
     .then(function (responses) {
   // Get a JSON object from each of the responses
         return Promise.all(responses.map(function (response) {
