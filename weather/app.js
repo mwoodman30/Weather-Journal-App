@@ -1,8 +1,8 @@
 const button = document.querySelector("#generate")
 //const inputValue = document.querySelector("#zip").value;
-//const feeling = document.querySelector('#feeling').value;
+const feelings = document.querySelector('#feelings').value;
 const url = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const api = '&appid=3e0ab282071ecddd139e033e5fb77b61';
+const api = '&appid=3e0ab282071ecddd139e033e5fb77b61&units=imperial';
 const dateApi = 'http://worldclockapi.com/api/json/est/now';
 
 const name = document.querySelector("#name");
@@ -14,13 +14,13 @@ const Kelvin = 273;
     button.addEventListener('click',function () {
         const inputValue = document.querySelector("#zip").value;
         const feeling = document.querySelector('#feeling').value;
-        fetch(url + inputValue + api)
+        fetch(url + zip + api)
         .then(function (response) {
               return response.json();
         })
         .then(data => {
           const nameValue = data['name'];
-          const tempValue = Math.floor(data.main.temp - Kelvin);
+          const tempValue = data.main.temp;
           const descValue = data['weather'][0]['description'];
           // const dateValue = data['currentDateTime'];
           postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling/*, date: dateValue */} )
@@ -31,7 +31,7 @@ const Kelvin = 273;
                 name.innerHTML = data.name;
                 temp.innerHTML = data.temp;
                 desc.innerHTML = data.desc;
-                // date.innerHTML = data.date;
+                feelings.innerHTML = data.feelings;
             })
           })
       })
