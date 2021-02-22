@@ -4,7 +4,7 @@ const url = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 const api = '&appid=3e0ab282071ecddd139e033e5fb77b61&units=imperial';
 //const dateApi = 'http://worldclockapi.com/api/json/est/now';
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.getMonth() + 1 +'.' + d.getDate() + '.' + d.getFullYear();
 const name = document.querySelector("#name");
 const desc = document.querySelector("#content");
 const temp = document.querySelector("#temp");
@@ -22,7 +22,7 @@ const Kelvin = 273;
           const nameValue = data['name'];
           const tempValue = data.main.temp;
           const descValue = data['weather'][0]['description'];
-          const dateValue = data['currentDateTime'];
+          const dateValue = newDate;
           postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling, date: dateValue } )
           .then(() => {
             fetch("/retrieve")
@@ -32,7 +32,7 @@ const Kelvin = 273;
                 temp.innerHTML = data.temp;
                 desc.innerHTML = data.desc;
                 feelings.innerHTML = data.feeling;
-                newDate.innerHTML = data.date;
+                date.innerHTML = data.date;
             })
           })
       })
