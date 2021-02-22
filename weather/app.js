@@ -12,8 +12,8 @@ const date = document.querySelector('#date');
 const Kelvin = 273;
 
     button.addEventListener('click',function () {
-        const inputValue = document.querySelector("#zip").value;
-        const feeling = document.querySelector('#feeling').value;
+        const zip = document.querySelector("#zip").value;
+        const feelings = document.querySelector('#feelings').value;
         fetch(url + zip + api)
         .then(function (response) {
               return response.json();
