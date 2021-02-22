@@ -22,7 +22,7 @@ const Kelvin = 273;
           const tempValue = data.main.temp;
           const descValue = data['weather'][0]['description'];
           const dateValue = data['currentDateTime'];
-          postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling/*, date: dateValue */} )
+          postData("/add",{name: nameValue, temp: tempValue, desc: descValue, feeling: feeling, date: dateValue } )
           .then(() => {
             fetch("/retrieve")
             .then(data => data.json())
