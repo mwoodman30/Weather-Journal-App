@@ -13,7 +13,7 @@ const Kelvin = 273;
 
     button.addEventListener('click',function () {
         const zip = document.querySelector("#zip").value;
-        const feelings = document.querySelector('#feelings').value;
+        const feeling = document.querySelector('#feeling').value;
         fetch(url + zip + api)
         .then(function (response) {
               return response.json();
@@ -31,7 +31,7 @@ const Kelvin = 273;
                 name.innerHTML = data.name;
                 temp.innerHTML = data.temp;
                 desc.innerHTML = data.desc;
-                feelings.innerHTML = data.feelings;
+                feelings.innerHTML = data.feeling;
             })
           })
       })
